@@ -56,6 +56,31 @@ const Component1 = () => {
     // console.log(test.some(item => item === 1));
 
 
+    const ProductCard = ({ item }) => {
+
+        return <div className="slide">
+
+            <div className="offers">
+                <span>
+                    76% Off
+                </span>
+                <img className="off" src="https://cdn.zeptonow.com/web-static-assets-prod/artifacts/12.59.0/images/offer-tag.svg"
+                    alt="" />
+            </div>
+
+            <img src={item.image} alt='' />
+
+            <div className="additionalOffer">
+                <img className="free" src="https://cdn.zeptonow.com/production/tr:w-120,ar-292-46,pr-true,f-auto,q-80/inventory/product/eb337250-2ec6-4535-bd64-eed2a6407293.png"
+                    alt="" />
+            </div>
+            <h5 className="product-name">{item.itemName}</h5>
+            <p className="ml">{item.qty}</p>
+            <p className="price">{item.discountedPrice} <del>{item.price}</del></p>
+            <button>Add to Cart</button>
+        </div>
+    }
+
     return (
         <div>
             <Navbar name={searchText} setName={setSearchText} />
@@ -67,29 +92,10 @@ const Component1 = () => {
                         data
                             .filter((item) => item.itemName.toLowerCase().includes(searchText.toLowerCase()))
                             .map((item, i) => {
-
-                                return <div key={i} className="slide">
-
-                                    <div className="offers">
-                                        <span>
-                                            76% Off
-                                        </span>
-                                        <img className="off" src="https://cdn.zeptonow.com/web-static-assets-prod/artifacts/12.59.0/images/offer-tag.svg"
-                                            alt="" />
-                                    </div>
-
-                                    <img src={item.image} alt='' />
-
-                                    <div className="additionalOffer">
-                                        <img className="free" src="https://cdn.zeptonow.com/production/tr:w-120,ar-292-46,pr-true,f-auto,q-80/inventory/product/eb337250-2ec6-4535-bd64-eed2a6407293.png"
-                                            alt="" />
-                                    </div>
-                                    <h5 className="product-name">{item.itemName}</h5>
-                                    <p className="ml">{item.qty}</p>
-                                    <p className="price">{item.discountedPrice} <del>{item.price}</del></p>
-                                    <button>Add to Cart</button>
-                                </div>
-
+                                return <ProductCard
+                                    key={i}
+                                    item={item}
+                                />
                             })
                     }
 

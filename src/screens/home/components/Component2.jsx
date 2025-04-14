@@ -1,10 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Component2 = () => {
 
     const [number1, setNumber1] = useState('');
     const [number2, setNumber2] = useState('');
     const [selectedButton, setSelectedButton] = useState('+');
+    const [calculatedValue, setCalculatedValue] = useState(0);
+
+    useEffect(() => {
+        // setCalculatedValue(calculate(selectedButton))
+        if (calculatedValue < 3) {
+            setCalculatedValue(calculatedValue + 1)
+        }
+    }, [number1, number2, selectedButton, calculatedValue]);
+
+
+    useEffect(() => {
+        console.log(1)
+    }, [])
+
+
+
 
     const calculate = (button) => {
         switch (button) {
@@ -22,8 +38,16 @@ const Component2 = () => {
         }
     }
 
+    if (calculatedValue > 2000) {
+        return <>value is greater than 2000</>
+    }
+
+
     return (
         <div>
+            {
+
+            }
             <input
                 value={number1}
                 onChange={(e) => {
@@ -80,9 +104,10 @@ const Component2 = () => {
             <br />
 
             {
-                calculate(selectedButton)
+                calculatedValue
             }
 
+            <br />
         </div>
     )
 }
