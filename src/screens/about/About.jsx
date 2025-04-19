@@ -3,17 +3,16 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router'
 
 const About = () => {
     const { meetCode } = useParams();
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const isLogin = true;
     let [searchParams] = useSearchParams();
 
-    console.log(searchParams)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // actions
+        navigate('/cart')
+    }
 
-    useEffect(() => {
-        if (!isLogin) {
-            navigate('/products');
-        }
-    }, [])
 
     return (
         <div>About<br />
@@ -23,7 +22,7 @@ const About = () => {
             {searchParams}
             <br />
 
-            <form method='get'>
+            <form onSubmit={handleSubmit} method='post'>
                 <input
                     name='keyword'
                 />
@@ -33,6 +32,12 @@ const About = () => {
                     Submit
                 </button>
             </form>
+            <br />
+            <button onClick={() => {
+                navigate('/')
+            }}>
+                Home
+            </button>
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 
 const ProductDetail = () => {
     const { productId, shopId, thirdParams,
-        fourthParams } = useParams()
+        fourthParams } = useParams();
 
     return (
         <div>
